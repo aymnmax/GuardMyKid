@@ -1,1606 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuardMyKid - Fun & Safe Digital Parenting</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #5b6bf0;
-            --secondary: #4a56d6;
-            --accent: #6fd8f0;
-            --light: #f9fcff;
-            --dark: #2a2e4a;
-            --success: #6fcf97;
-            --warning: #ff7e7e;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: var(--light);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            background-color: rgba(255,255,255,0.98);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo h1 {
-    /* Gradient background */
-    background: linear-gradient(to right, var(--primary), var(--accent));
-    
-    /* Clip background to text (WebKit/Blink browsers) */
-    -webkit-background-clip: text;
-    /* Clip background to text (standard property) */
-    background-clip: text;
-    
-    /* Make text transparent (WebKit/Blink browsers) */
-    -webkit-text-fill-color: transparent;
-    /* Make text transparent (standard property) */
-    color: transparent;
-    
-    /* Fallback for unsupported browsers */
-    @supports not (background-clip: text) {
-        color: var(--primary); /* Solid color fallback */
-        background: none;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuardMyKid | AI-Powered Child Safety</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #f72585;
+      --dark: #212529;
+      --light: #f8f9fa;
     }
-
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            transition: all 0.3s;
-            position: relative;
-            font-size: 1rem;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary);
-        }
-        
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            background: var(--accent);
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s;
-            border-radius: 3px;
-        }
-        
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--dark);
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 180px 0 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://svgshare.com/i/12eJ.svg');
-            background-size: 300px;
-            opacity: 0.1;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-family: 'Comic Neue', cursive;
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.8s ease;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            animation: fadeInUp 0.8s ease 0.3s forwards;
-            opacity: 0;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: white;
-            color: var(--primary);
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            animation: fadeInUp 0.8s ease 0.5s forwards;
-            opacity: 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-        }
-        
-        .cta-button:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        
-        .cta-button:hover:after {
-            transform: translateX(100%);
-        }
-        
-        .hero-image {
-            margin-top: 60px;
-            animation: float 6s ease-in-out infinite;
-            position: relative;
-        }
-        
-        .hero-image img {
-            max-width: 80%;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            transform: perspective(1000px) rotateX(10deg);
-            transition: transform 0.5s;
-        }
-        
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateX(0deg);
-        }
-        
-        /* Floating Characters */
-        .floating-character {
-            position: absolute;
-            z-index: 2;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .character-1 {
-            width: 120px;
-            top: 50px;
-            left: 5%;
-            animation-delay: 0.2s;
-        }
-        
-        .character-2 {
-            width: 100px;
-            bottom: 30px;
-            right: 8%;
-            animation-delay: 0.4s;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background-color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .services:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://svgshare.com/i/12eJ.svg');
-            background-size: 300px;
-            opacity: 0.03;
-            z-index: 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .section-title h2 {
-            font-family: 'Comic Neue', cursive;
-            font-size: 3rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 70px;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 5px;
-        }
-        
-        .section-title p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            text-align: center;
-            border: 2px solid rgba(91, 107, 240, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-            border-color: rgba(91, 107, 240, 0.3);
-        }
-        
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .service-card:hover:before {
-            opacity: 1;
-        }
-        
-        .service-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            font-size: 2.2rem;
-            box-shadow: 0 8px 20px rgba(91, 107, 240, 0.3);
-            transition: all 0.3s;
-        }
-        
-        .service-card:hover .service-icon {
-            transform: rotate(10deg) scale(1.1);
-        }
-        
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-            font-weight: 700;
-        }
-        
-        .service-card p {
-            color: #666;
-            font-size: 1rem;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background: linear-gradient(to bottom, #f0f7ff, white);
-            position: relative;
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .about-image {
-            flex: 1;
-            position: relative;
-            animation: fadeInLeft 1s ease;
-        }
-        
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: transform 0.5s;
-        }
-        
-        .about-image:hover img {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-        
-        .about-image:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 8px solid var(--accent);
-            border-radius: 20px;
-            top: -20px;
-            left: -20px;
-            z-index: -1;
-            opacity: 0.3;
-            animation: pulse 4s infinite;
-        }
-        
-        .about-text {
-            flex: 1;
-            animation: fadeInRight 1s ease;
-        }
-        
-        .about-text h2 {
-            font-family: 'Comic Neue', cursive;
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-            line-height: 1.2;
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            color: #555;
-            font-size: 1.1rem;
-        }
-        
-        .features-list {
-            margin-top: 30px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.7);
-            padding: 15px;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-        
-        .feature-item:hover {
-            background: white;
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .feature-text h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-        
-        .feature-text p {
-            margin-bottom: 0;
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background-color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonials:before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to bottom, rgba(240, 247, 255, 0.5), rgba(240, 247, 255, 0.8));
-            z-index: 0;
-        }
-        
-        .testimonials-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .testimonial {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            text-align: center;
-            margin: 0 20px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            position: absolute;
-            width: 100%;
-            border: 2px solid rgba(91, 107, 240, 0.1);
-        }
-        
-        .testimonial.active {
-            opacity: 1;
-            position: relative;
-        }
-        
-        .testimonial-content {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: #555;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .testimonial-content:before,
-        .testimonial-content:after {
-            content: '"';
-            font-size: 3rem;
-            color: var(--accent);
-            opacity: 0.3;
-            position: absolute;
-        }
-        
-        .testimonial-content:before {
-            top: -20px;
-            left: -15px;
-        }
-        
-        .testimonial-content:after {
-            bottom: -40px;
-            right: -15px;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .author-image {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 20px;
-            border: 3px solid var(--accent);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .author-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .author-info h4 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            color: var(--dark);
-            text-align: left;
-        }
-        
-        .author-info p {
-            color: #777;
-            font-size: 1rem;
-            text-align: left;
-        }
-        
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-        }
-        
-        .dot {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #ddd;
-            margin: 0 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .dot:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            transform: scale(0);
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-        
-        .dot.active:before {
-            transform: scale(1);
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://svgshare.com/i/12eJ.svg');
-            background-size: 300px;
-            opacity: 0.05;
-        }
-        
-        .contact-container {
-            display: flex;
-            gap: 60px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-info h2 {
-            font-family: 'Comic Neue', cursive;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: white;
-            line-height: 1.2;
-        }
-        
-        .contact-info p {
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-        
-        .contact-method {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-right: 20px;
-            transition: all 0.3s;
-        }
-        
-        .contact-method:hover .contact-icon {
-            background: rgba(255,255,255,0.25);
-            transform: scale(1.1);
-        }
-        
-        .contact-details h4 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        
-        .contact-details p, .contact-details a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .contact-details a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        .social-links {
-            display: flex;
-            margin-top: 40px;
-        }
-        
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-            margin-right: 15px;
-            transition: all 0.3s;
-        }
-        
-        .social-link:hover {
-            background: white;
-            color: var(--primary);
-            transform: translateY(-5px) scale(1.1);
-        }
-        
-        .contact-form {
-            flex: 1;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease;
-        }
-        
-        .contact-form h3 {
-            font-family: 'Comic Neue', cursive;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-            text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #eee;
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(111, 216, 240, 0.3);
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1.1rem;
-            width: 100%;
-            box-shadow: 0 5px 15px rgba(91, 107, 240, 0.4);
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(91, 107, 240, 0.6);
-        }
-        
-        #formSuccess {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(111, 207, 151, 0.2);
-            color: #2e7d32;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 600;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 70px 0 30px;
-            position: relative;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-col h3 {
-            font-family: 'Comic Neue', cursive;
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            bottom: 0;
-            left: 0;
-        }
-        
-        .footer-col p {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 25px;
-            font-size: 1rem;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            transform: translateX(5px);
-        }
-        
-        .footer-links i {
-            margin-right: 10px;
-            color: var(--accent);
-            width: 20px;
-            text-align: center;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-        }
-        
-        /* Floating Character in Footer */
-        .footer-character {
-            position: absolute;
-            width: 120px;
-            bottom: 20px;
-            right: 5%;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.8;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.2;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.5rem;
-            }
-            
-            .about-text h2,
-            .contact-info h2 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 20px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                border-radius: 0 0 15px 15px;
-            }
-            
-            nav ul.show {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 12px 30px;
-            }
-            
-            nav ul li a {
-                display: block;
-                font-size: 1.1rem;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 150px 0 60px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .about-text h2,
-            .contact-info h2 {
-                font-size: 2.2rem;
-            }
-            
-            .floating-character {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero {
-                padding: 130px 0 50px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .testimonial {
-                padding: 30px 20px;
-            }
-            
-            .author-image {
-                width: 60px;
-                height: 60px;
-                margin-right: 15px;
-            }
-            
-            .footer-character {
-                display: none;
-            }
-        }
-    </style>
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+    
+    /* Glassmorphism Effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.3);
+    }
+    
+    /* Text Gradient */
+    .text-gradient {
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    
+    /* Floating Icons */
+    .floating-icons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .floating-icons .icon {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.2;
+      color: var(--primary);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      padding: 8rem 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    
+    .hero-section h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    /* Live Counter */
+    #live-counter {
+      background: rgba(0,0,0,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      display: inline-block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    
+    #screen-time {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .stat {
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .stat h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .stat p {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--primary);
+    }
+    
+    /* Form Styles */
+    .form-control {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+    }
+    
+    .form-control:focus {
+      background: rgba(255,255,255,0.3);
+      box-shadow: none;
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo">
-                <img src="https://svgshare.com/i/12eD.svg" alt="GuardMyKid Logo">
-                <h1>GuardMyKid</h1>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="https://via.placeholder.com/150x50?text=GuardMyKid" alt="GuardMyKid Logo" id="logo" class="img-fluid">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reports">Reports</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <!-- Floating Characters -->
-            <img src="https://svgshare.com/i/12e3.svg" class="floating-character character-1" alt="Happy kid">
-            <img src="https://svgshare.com/i/12e7.svg" class="floating-character character-2" alt="Kid with tablet">
-            
-            <h1>Keep Your Kids Safe in the Digital Playground!</h1>
-            <p>Fun, friendly parental controls that kids won't hate and parents will love. Let's make screen time safe time!</p>
-            <a href="#contact" class="cta-button">Protect Your Family Now</a>
-            <div class="hero-image">
-                <img src="https://svgshare.com/i/12eA.svg" alt="Happy family using devices safely">
-            </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="glass-card animate__animated animate__fadeIn">
+        <h1 class="text-gradient">GuardMyKid</h1>
+        <p class="lead">AI-Powered Child Digital Safety Solutions</p>
+        <div id="live-counter">
+          <span>Today's Screen Time: <span id="screen-time">2h 45m</span></span>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="floating-icons">
+      <div class="icon" style="top: 20%; left: 10%;"><i class="fas fa-shield-alt"></i></div>
+      <div class="icon" style="top: 30%; right: 15%;"><i class="fas fa-robot"></i></div>
+      <div class="icon" style="bottom: 20%; left: 20%;"><i class="fas fa-child"></i></div>
+      <div class="icon" style="bottom: 30%; right: 10%;"><i class="fas fa-lock"></i></div>
+    </div>
+  </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Superhero Services</h2>
-                <p>We've got all the tools to keep your little ones safe in the digital universe!</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Device Setup</h3>
-                    <p>We'll configure all your family's devices with the perfect safety settings for each child's age.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Social Media Protection</h3>
-                    <p>Keep cyberbullies and predators away while allowing positive social connections.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Screen Time Magic</h3>
-                    <p>Create healthy habits with schedules that actually work (no more bedtime battles!).</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3>Privacy Force Field</h3>
-                    <p>Shield your family's personal information from prying eyes and data collectors.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Digital Superpowers</h3>
-                    <p>Teach kids to be smart, kind and responsible digital citizens through fun lessons.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Always-On Support</h3>
-                    <p>Our team is here whenever you need help with new apps, settings or concerns.</p>
-                </div>
-            </div>
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Parental Control Dashboard</h2>
+      
+      <div class="row">
+        <div class="col-md-6" data-aos="fade-right">
+          <div class="glass-card">
+            <h3><i class="fas fa-chart-line me-2"></i> Weekly Activity</h3>
+            <canvas id="activityChart"></canvas>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="https://svgshare.com/i/12eB.svg" alt="Our team helping a family">
-                </div>
-                <div class="about-text">
-                    <h2>Why Parents Love GuardMyKid</h2>
-                    <p>We know parenting in the digital age feels like navigating a maze blindfolded. New apps, hidden dangers, and constant tech battles - it's exhausting!</p>
-                    <p>That's why we created GuardMyKid - to be your trusted guide in the digital jungle. We're not just tech experts; we're parents too who understand the real challenges you face every day.</p>
-                    <div class="features-list">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-child"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Kid-Tested Approval</h4>
-                                <p>Our solutions are effective but don't feel like "parent spyware" to kids</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Family-First Approach</h4>
-                                <p>We respect your values and parenting style in every recommendation</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Always Learning</h4>
-                                <p>We constantly research new apps and trends to stay ahead of risks</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Happy Parent Stories</h2>
-                <p>Don't just take our word for it - hear from families we've helped!</p>
-            </div>
-            <div class="testimonials-slider">
-                <div class="testimonial active">
-                    <div class="testimonial-content">
-                        "Before GuardMyKid, screen time was a daily battle. Now we have peace at home with boundaries that actually work. My kids even helped pick their own limits!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://svgshare.com/i/12eC.svg" alt="Sarah Johnson">
-                        </div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Mom of twins, age 10</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        "I was terrified when my daughter started using social media. GuardMyKid gave me the tools to protect her while still letting her grow her independence."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://svgshare.com/i/12eE.svg" alt="Michael Chen">
-                        </div>
-                        <div class="author-info">
-                            <h4>Michael Chen</h4>
-                            <p>Dad of a 13-year-old</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-content">
-                        "The digital literacy program changed everything! My son now thinks before he posts and understands online risks. Best investment in his future."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://svgshare.com/i/12eF.svg" alt="The Rodriguez Family">
-                        </div>
-                        <div class="author-info">
-                            <h4>The Rodriguez Family</h4>
-                            <p>Parents of a 15-year-old</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-dots">
-                    <div class="dot active" data-slide="0"></div>
-                    <div class="dot" data-slide="1"></div>
-                    <div class="dot" data-slide="2"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Ready for Peace of Mind?</h2>
-                    <p>Let's chat about how we can help your family navigate the digital world safely and happily!</p>
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Call Our Team</h4>
-                            <a href="tel:+11234567890">+1 (123) 456-7890</a>
-                        </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email Us</h4>
-                            <a href="mailto:hello@guardmykid.com">hello@guardmykid.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Visit Our HQ</h4>
-                            <p>123 Digital Safety Lane, Techville, TV 12345</p>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://wa.me/11234567890" class="social-link" target="_blank" title="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://instagram.com/guardmykid" class="social-link" target="_blank" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://linkedin.com/company/guardmykid" class="social-link" target="_blank" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://twitter.com/guardmykid" class="social-link" target="_blank" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://youtube.com/guardmykid" class="social-link" target="_blank" title="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="enquiryForm">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required placeholder="e.g. Jane Smith">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="e.g. +1 (123) 456-7890">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required placeholder="e.g. jane@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">How Can We Help?</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your family's digital safety needs..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
-                    <div id="formSuccess" style="display: none;">
-                        <i class="fas fa-check-circle"></i> Thank you! Our team will contact you within 24 hours.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>GuardMyKid</h3>
-                    <p>Making digital parenting easier, safer, and less stressful for modern families.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li><a href="#testimonials"><i class="fas fa-quote-left"></i> Testimonials</a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Our Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-mobile-alt"></i> Device Setup</a></li>
-                        <li><a href="#"><i class="fas fa-shield-alt"></i> Social Media</a></li>
-                        <li><a href="#"><i class="fas fa-clock"></i> Screen Time</a></li>
-                        <li><a href="#"><i class="fas fa-lock"></i> Privacy</a></li>
-                        <li><a href="#"><i class="fas fa-graduation-cap"></i> Education</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Digital Safety Lane</li>
-                        <li><i class="fas fa-phone-alt"></i> +1 (123) 456-7890</li>
-                        <li><i class="fas fa-envelope"></i> hello@guardmykid.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 GuardMyKid. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            </div>
-        </div>
-        <img src="https://svgshare.com/i/12e4.svg" class="footer-character" alt="Happy kid">
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-            mobileMenuBtn.innerHTML = navMenu.classList.contains('show') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-        });
+        <div class="col-md-6" data-aos="fade-left">
+          <div class="glass-card">
+            <h3><i class="fas fa-clock me-2"></i> Time Distribution</h3>
+            <canvas id="timeChart"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mt-4">
+        <div class="col-md-4" data-aos="flip-up">
+          <div class="stat">
+            <h3>Study Time</h3>
+            <p>14h 22m</p>
+            <div class="progress mt-2">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
         
-        // Header Scroll Effect
-        const header = document.getElementById('header');
+        <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
+          <div class="stat">
+            <h3>Games</h3>
+            <p>9h 10m</p>
+            <div class="progress mt-2">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 42%"></div>
+            </div>
+          </div>
+        </div>
         
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        <div class="col-md-4" data-aos="flip-up" data-aos-delay="200">
+          <div class="stat">
+            <h3>Videos</h3>
+            <p>6h 45m</p>
+            <div class="progress mt-2">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: 31%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reports Section -->
+  <section id="reports" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Weekly Reports</h2>
+      
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="glass-card">
+            <h3><i class="fas fa-calendar-alt me-2"></i> This Week's Summary</h3>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Day</th>
+                    <th>Study</th>
+                    <th>Games</th>
+                    <th>Videos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mon</td>
+                    <td>2h 10m</td>
+                    <td>1h 15m</td>
+                    <td>0h 45m</td>
+                  </tr>
+                  <tr>
+                    <td>Tue</td>
+                    <td>2h 30m</td>
+                    <td>1h 00m</td>
+                    <td>1h 10m</td>
+                  </tr>
+                  <tr>
+                    <td>Wed</td>
+                    <td>1h 45m</td>
+                    <td>1h 30m</td>
+                    <td>0h 50m</td>
+                  </tr>
+                  <tr>
+                    <td>Thu</td>
+                    <td>2h 15m</td>
+                    <td>1h 45m</td>
+                    <td>1h 00m</td>
+                  </tr>
+                  <tr>
+                    <td>Fri</td>
+                    <td>1h 30m</td>
+                    <td>2h 00m</td>
+                    <td>1h 30m</td>
+                  </tr>
+                  <tr>
+                    <td>Sat</td>
+                    <td>1h 00m</td>
+                    <td>1h 30m</td>
+                    <td>1h 30m</td>
+                  </tr>
+                  <tr>
+                    <td>Sun</td>
+                    <td>1h 12m</td>
+                    <td>0h 50m</td>
+                    <td>0h 40m</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
         
-        // Testimonial Slider
-        const testimonials = document.querySelectorAll('.testimonial');
-        const dots = document.querySelectorAll('.dot');
-        let currentTestimonial = 0;
-        let slideInterval;
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="glass-card">
+            <h3><i class="fas fa-trophy me-2"></i> Achievements</h3>
+            <div class="achievements">
+              <div class="achievement-item mb-3">
+                <div class="d-flex align-items-center">
+                  <div class="achievement-icon me-3">
+                    <i class="fas fa-star text-warning"></i>
+                  </div>
+                  <div>
+                    <h5 class="mb-0">Study Streak</h5>
+                    <p class="mb-0">5 days in a row with 2+ hours of study</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="achievement-item mb-3">
+                <div class="d-flex align-items-center">
+                  <div class="achievement-icon me-3">
+                    <i class="fas fa-check-circle text-success"></i>
+                  </div>
+                  <div>
+                    <h5 class="mb-0">Screen Time Goal</h5>
+                    <p class="mb-0">Met daily limit 4 times this week</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="achievement-item">
+                <div class="d-flex align-items-center">
+                  <div class="achievement-icon me-3">
+                    <i class="fas fa-heart text-danger"></i>
+                  </div>
+                  <div>
+                    <h5 class="mb-0">Healthy Balance</h5>
+                    <p class="mb-0">Good mix of study and play time</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Our Services</h2>
+      
+      <div class="row">
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="glass-card h-100">
+            <div class="service-icon text-center mb-3">
+              <i class="fas fa-mobile-alt fa-3x text-primary"></i>
+            </div>
+            <h4 class="text-center">Device Setup</h4>
+            <p>Custom parental controls for smartphones, tablets, and computers with optimal safety settings.</p>
+          </div>
+        </div>
         
-        function showTestimonial(index) {
-            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            testimonials[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentTestimonial = index;
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="glass-card h-100">
+            <div class="service-icon text-center mb-3">
+              <i class="fas fa-chart-pie fa-3x text-primary"></i>
+            </div>
+            <h4 class="text-center">Activity Monitoring</h4>
+            <p>Detailed reports on app usage, websites visited, and screen time distribution.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="glass-card h-100">
+            <div class="service-icon text-center mb-3">
+              <i class="fas fa-user-shield fa-3x text-primary"></i>
+            </div>
+            <h4 class="text-center">Safety Consulting</h4>
+            <p>Personalized advice on cyberbullying, online predators, and digital citizenship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Get Started</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8" data-aos="zoom-in">
+          <div class="glass-card">
+            <form action="https://formsubmit.co/guardmykid.in@gmail.com" method="POST">
+              <input type="hidden" name="_subject" value="New Contact from GuardMyKid">
+              <input type="hidden" name="_next" value="https://your-vercel-url.vercel.app/thanks.html">
+              <input type="hidden" name="_captcha" value="false">
+              
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="message" class="form-label">How can we help?</label>
+                <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+              </div>
+              
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg px-5">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center">
+    <div class="container">
+      <div class="mb-3">
+        <a href="#" class="text-decoration-none me-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-decoration-none me-3"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-decoration-none"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p class="mb-0">© 2023 GuardMyKid. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- GSAP for advanced animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <!-- AOS (Animate On Scroll) -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+    
+    // Initialize Charts
+    const activityCtx = document.getElementById('activityChart').getContext('2d');
+    const activityChart = new Chart(activityCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Study', 'Games', 'Videos', 'Social', 'Other'],
+        datasets: [{
+          data: [14, 9, 6, 3, 2],
+          backgroundColor: [
+            '#4bc0c0',
+            '#ff6384',
+            '#ffcd56',
+            '#36a2eb',
+            '#9966ff'
+          ],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          }
         }
-        
-        function nextTestimonial() {
-            let nextTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(nextTestimonial);
+      }
+    });
+    
+    const timeCtx = document.getElementById('timeChart').getContext('2d');
+    const timeChart = new Chart(timeCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Screen Time (hours)',
+          data: [4.1, 4.4, 4.05, 4.5, 4.8, 3.8, 2.8],
+          backgroundColor: '#4361ee',
+          borderRadius: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showTestimonial(index);
-                resetInterval();
-            });
-        });
-        
-        function startInterval() {
-            slideInterval = setInterval(nextTestimonial, 6000);
-        }
-        
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-        
-        startInterval();
-        
-        // Form Submission
-        const enquiryForm = document.getElementById('enquiryForm');
-        const formSuccess = document.getElementById('formSuccess');
-        
-        enquiryForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Here you would typically send the form data to your server
-            // For demonstration, we'll just show the success message
-            enquiryForm.style.display = 'none';
-            formSuccess.style.display = 'block';
-            
-            // In a real implementation, you would:
-            // 1. Collect form data
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value
-            };
-            
-            console.log('Form submitted:', formData); // For demo purposes
-            
-            // 2. Send to your backend (e.g., using fetch API)
-            // fetch('/submit-enquiry', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(formData)
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     enquiryForm.style.display = 'none';
-            //     formSuccess.style.display = 'block';
-            // })
-            // .catch(error => {
-            //     alert('There was an error submitting your form. Please try again.');
-            // });
-            
-            // Reset form after 5 seconds
-            setTimeout(() => {
-                enquiryForm.reset();
-                enquiryForm.style.display = 'block';
-                formSuccess.style.display = 'none';
-            }, 5000);
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (navMenu.classList.contains('show')) {
-                        navMenu.classList.remove('show');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                }
-            });
-        });
-        
-        // Animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.service-card, .about-image, .about-text, .contact-form');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        }
-        
-        // Set initial state for animated elements
-        document.querySelectorAll('.service-card, .about-image, .about-text, .contact-form').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        });
-        
-        document.querySelectorAll('.service-card').forEach((card, index) => {
-            card.style.transform = 'translateY(30px)';
-            card.style.transitionDelay = `${index * 0.1}s`;
-        });
-        
-        document.querySelector('.about-image').style.transform = 'translateX(-30px)';
-        document.querySelector('.about-text').style.transform = 'translateX(30px)';
-        document.querySelector('.contact-form').style.transform = 'translateY(30px)';
-        
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
-    </script>
+      }
+    });
+    
+    // GSAP Animations
+    gsap.from(".navbar", {
+      duration: 1,
+      y: -50,
+      opacity: 0,
+      ease: "power3.out"
+    });
+    
+    gsap.to(".floating-icons .icon", {
+      y: -20,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+    
+    // Screen Time Counter Animation
+    let screenTime = 0;
+    const targetTime = 2.75; // 2 hours 45 minutes
+    
+    const counter = setInterval(() => {
+      if (screenTime >= targetTime) {
+        clearInterval(counter);
+      } else {
+        screenTime += 0.01;
+        const hours = Math.floor(screenTime);
+        const minutes = Math.floor((screenTime - hours) * 60);
+        document.getElementById('screen-time').textContent = `${hours}h ${minutes}m`;
+      }
+    }, 50);
+    
+    // Replace logo placeholder with your actual logo
+    document.getElementById('logo').src = 'your-logo-url-here.png';
+  </script>
 </body>
 </html>
