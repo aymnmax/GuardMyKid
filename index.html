@@ -3,190 +3,290 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GuardMyKid | AI-Powered Child Safety</title>
+  <title>GuardMyKid | Premium Child Digital Safety Solutions</title>
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <!-- AOS (Animate On Scroll) -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --secondary: #3f37c9;
-      --accent: #f72585;
-      --dark: #212529;
-      --light: #f8f9fa;
+      --primary: #2a4365;
+      --secondary: #1e4d8b;
+      --accent: #e53e3e;
+      --gold: #d4af37;
+      --light: #f7fafc;
+      --dark: #1a202c;
     }
     
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
       color: var(--dark);
-      overflow-x: hidden;
+      background-color: var(--light);
+      line-height: 1.6;
     }
     
-    /* Glassmorphism Effect */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-      padding: 2rem;
-      margin-bottom: 2rem;
-      transition: all 0.3s ease;
-    }
-    
-    .glass-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.3);
-    }
-    
-    /* Text Gradient */
-    .text-gradient {
-      background: linear-gradient(45deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    h1, h2, h3, h4, .display-font {
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
     }
     
-    /* Floating Icons */
-    .floating-icons {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: -1;
+    /* Navigation */
+    .navbar {
+      padding: 20px 0;
+      background-color: white !important;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     }
     
-    .floating-icons .icon {
+    .navbar-brand img {
+      height: 40px;
+    }
+    
+    .nav-link {
+      font-weight: 600;
+      margin: 0 10px;
+      color: var(--dark) !important;
+      position: relative;
+    }
+    
+    .nav-link:after {
+      content: '';
       position: absolute;
-      font-size: 2rem;
-      opacity: 0.2;
-      color: var(--primary);
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover:after {
+      width: 100%;
     }
     
     /* Hero Section */
     .hero-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 120px 0 100px;
       position: relative;
-      padding: 8rem 0;
-      text-align: center;
       overflow: hidden;
     }
     
-    .hero-section h1 {
-      font-size: 4rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+    .hero-section:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
     }
     
-    /* Live Counter */
-    #live-counter {
-      background: rgba(0,0,0,0.1);
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      display: inline-block;
-      margin-top: 1rem;
+    .hero-content {
+      position: relative;
+    }
+    
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 30px;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .card-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 20px;
       font-weight: 600;
     }
     
-    #screen-time {
-      color: var(--accent);
+    /* Pricing Cards */
+    .pricing-card {
+      border-top: 5px solid var(--primary);
+    }
+    
+    .pricing-card.premium {
+      border-top-color: var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .pricing-card.premium:after {
+      content: 'BEST VALUE';
+      position: absolute;
+      top: 15px;
+      right: -35px;
+      background: var(--gold);
+      color: white;
+      padding: 3px 40px;
+      transform: rotate(45deg);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .price {
+      font-size: 3rem;
       font-weight: 700;
-    }
-    
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .stat {
-      padding: 1.5rem;
-      border-radius: 15px;
-      text-align: center;
-      background: rgba(255,255,255,0.2);
-    }
-    
-    .stat h3 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-    }
-    
-    .stat p {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin: 0;
       color: var(--primary);
     }
     
-    /* Form Styles */
-    .form-control {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
+    .price.premium {
+      color: var(--gold);
     }
     
-    .form-control:focus {
-      background: rgba(255,255,255,0.3);
-      box-shadow: none;
-      border: 1px solid rgba(255,255,255,0.4);
+    /* Buttons */
+    .btn {
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
     }
     
     .btn-primary {
-      background: var(--primary);
-      border: none;
-      padding: 0.75rem 2rem;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: all 0.3s ease;
+      background-color: var(--primary);
+      border-color: var(--primary);
     }
     
     .btn-primary:hover {
-      background: var(--secondary);
-      transform: translateY(-2px);
+      background-color: var(--secondary);
+      border-color: var(--secondary);
+    }
+    
+    .btn-accent {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    
+    .btn-accent:hover {
+      background-color: #c53030;
+      border-color: #c53030;
+      color: white;
+    }
+    
+    /* Features List */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .feature-list li {
+      padding: 8px 0;
+      position: relative;
+      padding-left: 30px;
+    }
+    
+    .feature-list li:before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+    }
+    
+    /* Testimonials */
+    .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    
+    .testimonial-author:before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 15px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer-links h5 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 20px;
+      margin-right: 15px;
     }
     
     /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .hero-section h1 {
-        font-size: 2.5rem;
+      .hero-section {
+        padding: 100px 0 60px;
       }
       
-      .stats-grid {
-        grid-template-columns: 1fr;
+      .pricing-card.premium:after {
+        top: 10px;
+        right: -40px;
       }
     }
   </style>
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="https://via.placeholder.com/150x50?text=GuardMyKid" alt="GuardMyKid Logo" id="logo" class="img-fluid">
+        <img src="https://via.placeholder.com/150x50?text=GuardMyKid" alt="GuardMyKid Logo" id="logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#dashboard">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="#reports">Reports</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -196,388 +296,6 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
-      <div class="glass-card animate__animated animate__fadeIn">
-        <h1 class="text-gradient">GuardMyKid</h1>
-        <p class="lead">AI-Powered Child Digital Safety Solutions</p>
-        <div id="live-counter">
-          <span>Today's Screen Time: <span id="screen-time">2h 45m</span></span>
-        </div>
-      </div>
-    </div>
-    <div class="floating-icons">
-      <div class="icon" style="top: 20%; left: 10%;"><i class="fas fa-shield-alt"></i></div>
-      <div class="icon" style="top: 30%; right: 15%;"><i class="fas fa-robot"></i></div>
-      <div class="icon" style="bottom: 20%; left: 20%;"><i class="fas fa-child"></i></div>
-      <div class="icon" style="bottom: 30%; right: 10%;"><i class="fas fa-lock"></i></div>
-    </div>
-  </section>
-
-  <!-- Dashboard Section -->
-  <section id="dashboard" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Parental Control Dashboard</h2>
-      
-      <div class="row">
-        <div class="col-md-6" data-aos="fade-right">
-          <div class="glass-card">
-            <h3><i class="fas fa-chart-line me-2"></i> Weekly Activity</h3>
-            <canvas id="activityChart"></canvas>
-          </div>
-        </div>
-        
-        <div class="col-md-6" data-aos="fade-left">
-          <div class="glass-card">
-            <h3><i class="fas fa-clock me-2"></i> Time Distribution</h3>
-            <canvas id="timeChart"></canvas>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row mt-4">
-        <div class="col-md-4" data-aos="flip-up">
-          <div class="stat">
-            <h3>Study Time</h3>
-            <p>14h 22m</p>
-            <div class="progress mt-2">
-              <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
-          <div class="stat">
-            <h3>Games</h3>
-            <p>9h 10m</p>
-            <div class="progress mt-2">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 42%"></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-4" data-aos="flip-up" data-aos-delay="200">
-          <div class="stat">
-            <h3>Videos</h3>
-            <p>6h 45m</p>
-            <div class="progress mt-2">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 31%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reports Section -->
-  <section id="reports" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Weekly Reports</h2>
-      
-      <div class="row">
-        <div class="col-lg-6" data-aos="fade-right">
-          <div class="glass-card">
-            <h3><i class="fas fa-calendar-alt me-2"></i> This Week's Summary</h3>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Day</th>
-                    <th>Study</th>
-                    <th>Games</th>
-                    <th>Videos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mon</td>
-                    <td>2h 10m</td>
-                    <td>1h 15m</td>
-                    <td>0h 45m</td>
-                  </tr>
-                  <tr>
-                    <td>Tue</td>
-                    <td>2h 30m</td>
-                    <td>1h 00m</td>
-                    <td>1h 10m</td>
-                  </tr>
-                  <tr>
-                    <td>Wed</td>
-                    <td>1h 45m</td>
-                    <td>1h 30m</td>
-                    <td>0h 50m</td>
-                  </tr>
-                  <tr>
-                    <td>Thu</td>
-                    <td>2h 15m</td>
-                    <td>1h 45m</td>
-                    <td>1h 00m</td>
-                  </tr>
-                  <tr>
-                    <td>Fri</td>
-                    <td>1h 30m</td>
-                    <td>2h 00m</td>
-                    <td>1h 30m</td>
-                  </tr>
-                  <tr>
-                    <td>Sat</td>
-                    <td>1h 00m</td>
-                    <td>1h 30m</td>
-                    <td>1h 30m</td>
-                  </tr>
-                  <tr>
-                    <td>Sun</td>
-                    <td>1h 12m</td>
-                    <td>0h 50m</td>
-                    <td>0h 40m</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-6" data-aos="fade-left">
-          <div class="glass-card">
-            <h3><i class="fas fa-trophy me-2"></i> Achievements</h3>
-            <div class="achievements">
-              <div class="achievement-item mb-3">
-                <div class="d-flex align-items-center">
-                  <div class="achievement-icon me-3">
-                    <i class="fas fa-star text-warning"></i>
-                  </div>
-                  <div>
-                    <h5 class="mb-0">Study Streak</h5>
-                    <p class="mb-0">5 days in a row with 2+ hours of study</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="achievement-item mb-3">
-                <div class="d-flex align-items-center">
-                  <div class="achievement-icon me-3">
-                    <i class="fas fa-check-circle text-success"></i>
-                  </div>
-                  <div>
-                    <h5 class="mb-0">Screen Time Goal</h5>
-                    <p class="mb-0">Met daily limit 4 times this week</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="achievement-item">
-                <div class="d-flex align-items-center">
-                  <div class="achievement-icon me-3">
-                    <i class="fas fa-heart text-danger"></i>
-                  </div>
-                  <div>
-                    <h5 class="mb-0">Healthy Balance</h5>
-                    <p class="mb-0">Good mix of study and play time</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Our Services</h2>
-      
-      <div class="row">
-        <div class="col-md-4" data-aos="fade-up">
-          <div class="glass-card h-100">
-            <div class="service-icon text-center mb-3">
-              <i class="fas fa-mobile-alt fa-3x text-primary"></i>
-            </div>
-            <h4 class="text-center">Device Setup</h4>
-            <p>Custom parental controls for smartphones, tablets, and computers with optimal safety settings.</p>
-          </div>
-        </div>
-        
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="glass-card h-100">
-            <div class="service-icon text-center mb-3">
-              <i class="fas fa-chart-pie fa-3x text-primary"></i>
-            </div>
-            <h4 class="text-center">Activity Monitoring</h4>
-            <p>Detailed reports on app usage, websites visited, and screen time distribution.</p>
-          </div>
-        </div>
-        
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="glass-card h-100">
-            <div class="service-icon text-center mb-3">
-              <i class="fas fa-user-shield fa-3x text-primary"></i>
-            </div>
-            <h4 class="text-center">Safety Consulting</h4>
-            <p>Personalized advice on cyberbullying, online predators, and digital citizenship.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5" data-aos="fade-up">Get Started</h2>
-      
-      <div class="row justify-content-center">
-        <div class="col-lg-8" data-aos="zoom-in">
-          <div class="glass-card">
-            <form action="https://formsubmit.co/guardmykid.in@gmail.com" method="POST">
-              <input type="hidden" name="_subject" value="New Contact from GuardMyKid">
-              <input type="hidden" name="_next" value="https://your-vercel-url.vercel.app/thanks.html">
-              <input type="hidden" name="_captcha" value="false">
-              
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-              </div>
-              
-              <div class="mb-3">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="tel" class="form-control" id="phone" name="phone" required>
-              </div>
-              
-              <div class="mb-3">
-                <label for="message" class="form-label">How can we help?</label>
-                <textarea class="form-control" id="message" name="message" rows="3"></textarea>
-              </div>
-              
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-lg px-5">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-4 text-center">
-    <div class="container">
-      <div class="mb-3">
-        <a href="#" class="text-decoration-none me-3"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="text-decoration-none me-3"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="text-decoration-none"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <p class="mb-0">© 2023 GuardMyKid. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- GSAP for advanced animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-  <!-- AOS (Animate On Scroll) -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  
-  <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-    
-    // Initialize Charts
-    const activityCtx = document.getElementById('activityChart').getContext('2d');
-    const activityChart = new Chart(activityCtx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Study', 'Games', 'Videos', 'Social', 'Other'],
-        datasets: [{
-          data: [14, 9, 6, 3, 2],
-          backgroundColor: [
-            '#4bc0c0',
-            '#ff6384',
-            '#ffcd56',
-            '#36a2eb',
-            '#9966ff'
-          ],
-          borderWidth: 0
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'bottom',
-          }
-        }
-      }
-    });
-    
-    const timeCtx = document.getElementById('timeChart').getContext('2d');
-    const timeChart = new Chart(timeCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{
-          label: 'Screen Time (hours)',
-          data: [4.1, 4.4, 4.05, 4.5, 4.8, 3.8, 2.8],
-          backgroundColor: '#4361ee',
-          borderRadius: 10
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-    
-    // GSAP Animations
-    gsap.from(".navbar", {
-      duration: 1,
-      y: -50,
-      opacity: 0,
-      ease: "power3.out"
-    });
-    
-    gsap.to(".floating-icons .icon", {
-      y: -20,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
-    
-    // Screen Time Counter Animation
-    let screenTime = 0;
-    const targetTime = 2.75; // 2 hours 45 minutes
-    
-    const counter = setInterval(() => {
-      if (screenTime >= targetTime) {
-        clearInterval(counter);
-      } else {
-        screenTime += 0.01;
-        const hours = Math.floor(screenTime);
-        const minutes = Math.floor((screenTime - hours) * 60);
-        document.getElementById('screen-time').textContent = `${hours}h ${minutes}m`;
-      }
-    }, 50);
-    
-    // Replace logo placeholder with your actual logo
-    document.getElementById('logo').src = 'your-logo-url-here.png';
-  </script>
-</body>
-</html>
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content" data-aos="fade-right">
+          <h1
